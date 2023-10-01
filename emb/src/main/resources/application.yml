@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/emb?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    password: yhm75040611?
+    username: {username}
+    password: {password}
 
   security:
     jwt:
