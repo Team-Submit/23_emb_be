@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/emb?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: {username}
-    password: {password}
+    username: { username }
+    password: { password }
 
   security:
     jwt:
@@ -13,10 +13,10 @@ spring:
 
   jpa:
     database: mysql
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     generate-ddl: true
     hibernate:
       ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     show_sql: true
     format_sql: true
 
