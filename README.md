@@ -21,6 +21,7 @@
 - 언어 : JAVA,  
 - 버전: 17
 
+```java
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.1.4'
@@ -43,3 +44,4 @@ dependencies {
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.7'
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.10.7'
 }
+```
