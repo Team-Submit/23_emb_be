@@ -24,4 +24,10 @@ public class Manager extends BaseTimeEntity {
 
     @NotNull
     private String password;
+
+    @Builder
+    public Manager(String id, String password) {
+        this.id = id;
+        this.password = password;
+    }
 }
