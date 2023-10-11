@@ -17,7 +17,7 @@ public class Manager extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long manager_id;
+    private Long managerId;
 
     @NotNull
     private  String id;
