@@ -34,7 +34,7 @@ public class JwtTokenProvider {
         String refreshToken = generateToken(id, "refresh", jwtProperties.getRefreshExp());
 
         refreshTokenRepository.save(RefreshToken.builder()
-                .user_id(id)
+                .userId(id)
                 .token(refreshToken)
                 .build());
 

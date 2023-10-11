@@ -24,11 +24,11 @@ public class User extends BaseTimeEntity {
 
     @NotNull
     @Length(max = 255)
-    private  String user_id;
+    private  String userId;
 
     @NotNull
     @Length(max = 30)
-    private String user_password;
+    private String userPassword;
 
     @NotNull
     @Length(max = 255)
@@ -36,9 +36,9 @@ public class User extends BaseTimeEntity {
 
     @NotNull
     @Length(max = 50)
-    private String user_name;
+    private String userName;
 
     @NotNull
     @Length(max = 20)
-    private String user_number;
+    private String userNumber;
 }
