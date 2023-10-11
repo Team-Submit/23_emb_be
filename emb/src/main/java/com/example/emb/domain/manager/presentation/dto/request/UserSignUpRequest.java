@@ -13,6 +13,6 @@ public class UserSignUpRequest {
     private  String id;
 
     @NotBlank(message = "password는 Null, 공백을 허용하지 않습니다.")
-    @Length(min = 1, max = 30, message = "password는 30글자 이하여야 합니다.")
+    @Length(min = 8, max = 30, message = "password는 30글자 이하여야 합니다.")
     private String password;
 }
