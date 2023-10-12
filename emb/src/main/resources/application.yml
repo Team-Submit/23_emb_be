@@ -7,9 +7,9 @@ spring:
 
   security:
     jwt:
-      secret-key: ${JWT_SECRET_KEY:emb}
-      access-exp: ${JWT_ACCESS_EXP:7200}
-      refresh-exp: ${JWT_REFRESH_EXP:123456789}
+      secret-key: ${JWT_SECRET_KEY}
+      access-exp: ${JWT_ACCESS_EXP}
+      refresh-exp: ${JWT_REFRESH_EXP}
 
   jpa:
     database: mysql

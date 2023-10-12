@@ -4,7 +4,7 @@ import jakarta.persistence.Id;
 import lombok.*;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.TimeToLive;
-import org.springframework.stereotype.Indexed;
+import org.springframework.data.redis.core.index.Indexed;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -14,8 +14,9 @@ import org.springframework.stereotype.Indexed;
 public class RefreshToken {
 
     @Id
-    private String email;
+    private String userId;
 
+    @Indexed
     private String token;
 
     @TimeToLive

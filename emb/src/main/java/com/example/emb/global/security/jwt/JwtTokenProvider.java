@@ -1,7 +1,7 @@
 package com.example.emb.global.security.jwt;
 
-import com.example.emb.domain.user.domain.RefreshToken;
-import com.example.emb.domain.user.domain.repository.RefreshTokenRepository;
+import com.example.emb.domain.auth.domain.RefreshToken;
+import com.example.emb.domain.auth.domain.repository.RefreshTokenRepository;
 import com.example.emb.global.exception.ExpiredJwtException;
 import com.example.emb.global.exception.InvalidJwtException;
 import com.example.emb.global.security.auth.AuthDetailsService;

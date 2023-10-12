@@ -1,10 +1,9 @@
 package com.example.emb.domain.auth.service;
 
+import com.example.emb.domain.auth.domain.RefreshToken;
+import com.example.emb.domain.auth.domain.repository.RefreshTokenRepository;
 import com.example.emb.domain.auth.exception.RefreshTokenNotFoundException;
 import com.example.emb.domain.auth.presentation.dto.response.UserTokenRefreshResponse;
-import com.example.emb.domain.auth.presentation.dto.response.UserTokenResponse;
-import com.example.emb.domain.user.domain.RefreshToken;
-import com.example.emb.domain.user.domain.repository.RefreshTokenRepository;
 import com.example.emb.global.security.jwt.JwtProperties;
 import com.example.emb.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;

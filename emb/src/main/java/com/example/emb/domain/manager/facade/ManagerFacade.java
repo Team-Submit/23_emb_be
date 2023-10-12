@@ -14,8 +14,6 @@ public class ManagerFacade {
     private final ManagerRepository managerRepository;
 
     public Manager getCurrentManager() {
-//        final CustomManager principal = (CustomManager) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        final String name = principal.getName();
         String id = SecurityContextHolder.getContext().getAuthentication().getName();
         return getById(id);
     }
