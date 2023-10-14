@@ -4,7 +4,7 @@ import com.example.emb.domain.auth.domain.RefreshToken;
 import com.example.emb.domain.auth.domain.repository.RefreshTokenRepository;
 import com.example.emb.domain.auth.exception.RefreshTokenNotFoundException;
 import com.example.emb.domain.auth.presentation.dto.response.UserTokenRefreshResponse;
-import com.example.emb.global.security.jwt.JwtProperties;
+import com.example.emb.global.property.jwt.JwtProperties;
 import com.example.emb.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

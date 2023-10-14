@@ -4,10 +4,13 @@ import com.example.emb.domain.auth.domain.RefreshToken;
 import com.example.emb.domain.auth.domain.repository.RefreshTokenRepository;
 import com.example.emb.global.exception.ExpiredJwtException;
 import com.example.emb.global.exception.InvalidJwtException;
+import com.example.emb.global.property.jwt.JwtProperties;
 import com.example.emb.global.security.auth.AuthDetailsService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -15,6 +18,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
+import java.security.Key;
 import java.util.Date;
 import java.time.ZonedDateTime;
 
@@ -26,6 +30,9 @@ public class JwtTokenProvider {
     private final AuthDetailsService authDetailsService;
     private final RefreshTokenRepository refreshTokenRepository;
 
+    private static final String HEADER = "Authorization";
+    private static final String PREFIX = "Bearer";
+
     public String generateAccessToken(String id) {
         return generateToken(id, "access", jwtProperties.getAccessExp());
     }
@@ -36,14 +43,19 @@ public class JwtTokenProvider {
         refreshTokenRepository.save(RefreshToken.builder()
                 .userId(id)
                 .token(refreshToken)
+                .timeToLive(jwtProperties.getRefreshExp())
                 .build());
 
         return refreshToken;
     }
 
     private String generateToken(String id, String type, Long exp) {
+
+        byte[] keyBytes = Decoders.BASE64.decode(jwtProperties.getSecretKey());
+        Key key = Keys.hmacShaKeyFor(keyBytes);
+
         return Jwts.builder()
-                .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
+                .signWith(key, SignatureAlgorithm.HS256)
                 .setSubject(id)
                 .claim("type", type)
                 .setIssuedAt(new Date())
@@ -52,7 +64,7 @@ public class JwtTokenProvider {
     }
 
     public String resolveToken(HttpServletRequest request) {
-        String bearer = request.getHeader(jwtProperties.getHeader());
+        String bearer = request.getHeader(HEADER);
         return parseToken(bearer);
     }
 
@@ -64,8 +76,8 @@ public class JwtTokenProvider {
     }
 
     public String parseToken(String bearerToken) {
-        if (bearerToken != null && bearerToken.startsWith(jwtProperties.getPrefix()))
-            return bearerToken.replace(jwtProperties.getPrefix(), "");
+        if (bearerToken != null && bearerToken.startsWith(PREFIX))
+            return bearerToken.replace(PREFIX, "");
 
         return null;
     }
@@ -76,8 +88,11 @@ public class JwtTokenProvider {
 
     private Claims getTokenBody(String token) {
 
+        byte[] keyBytes = Decoders.BASE64.decode(jwtProperties.getSecretKey());
+        Key key = Keys.hmacShaKeyFor(keyBytes);
+
         try {
-            return Jwts.parser().setSigningKey(jwtProperties.getSecretKey())
+            return Jwts.parserBuilder().setSigningKey(key).build()
                     .parseClaimsJws(token).getBody();
         } catch (io.jsonwebtoken.ExpiredJwtException e) {
             throw ExpiredJwtException.EXCEPTION;

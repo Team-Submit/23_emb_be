@@ -5,7 +5,7 @@ import com.example.emb.domain.manager.domain.Manager;
 import com.example.emb.domain.manager.domain.repository.ManagerRepository;
 import com.example.emb.domain.manager.facade.ManagerFacade;
 import com.example.emb.domain.manager.presentation.dto.request.UserSignUpRequest;
-import com.example.emb.global.security.jwt.JwtProperties;
+import com.example.emb.global.property.jwt.JwtProperties;
 import com.example.emb.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
