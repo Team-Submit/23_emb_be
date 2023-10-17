@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/emb?serverTimezone=Asia/Seoul
-    username: username
-    password: password
+    username: root
+    password: chan1125
 
   main:
     allow-bean-definition-overriding: true

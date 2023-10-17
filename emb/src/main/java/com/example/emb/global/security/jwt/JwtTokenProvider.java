@@ -9,7 +9,6 @@ import com.example.emb.global.security.auth.AuthDetailsService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -51,8 +50,7 @@ public class JwtTokenProvider {
 
     private String generateToken(String id, String type, Long exp) {
 
-        byte[] keyBytes = Decoders.BASE64.decode(jwtProperties.getSecretKey());
-        Key key = Keys.hmacShaKeyFor(keyBytes);
+        Key key = Keys.hmacShaKeyFor(jwtProperties.getSecretKey().getBytes());
 
         return Jwts.builder()
                 .signWith(key, SignatureAlgorithm.HS256)
@@ -88,12 +86,15 @@ public class JwtTokenProvider {
 
     private Claims getTokenBody(String token) {
 
-        byte[] keyBytes = Decoders.BASE64.decode(jwtProperties.getSecretKey());
-        Key key = Keys.hmacShaKeyFor(keyBytes);
-
         try {
-            return Jwts.parserBuilder().setSigningKey(key).build()
-                    .parseClaimsJws(token).getBody();
+
+            Key key = Keys.hmacShaKeyFor(jwtProperties.getSecretKey().getBytes());
+
+            return Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
         } catch (io.jsonwebtoken.ExpiredJwtException e) {
             throw ExpiredJwtException.EXCEPTION;
         } catch (Exception e) {
