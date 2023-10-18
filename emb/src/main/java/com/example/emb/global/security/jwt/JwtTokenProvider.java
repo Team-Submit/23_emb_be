@@ -50,7 +50,7 @@ public class JwtTokenProvider {
 
     private String generateToken(String id, String type, Long exp) {
 
-        Key key = Keys.hmacShaKeyFor(jwtProperties.getSecretKey().getBytes());
+        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
         return Jwts.builder()
                 .signWith(key, SignatureAlgorithm.HS256)
@@ -88,7 +88,7 @@ public class JwtTokenProvider {
 
         try {
 
-            Key key = Keys.hmacShaKeyFor(jwtProperties.getSecretKey().getBytes());
+            Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
             return Jwts.parserBuilder()
                     .setSigningKey(key)
