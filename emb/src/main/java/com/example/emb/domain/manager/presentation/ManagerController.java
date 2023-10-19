@@ -1,7 +1,7 @@
 package com.example.emb.domain.manager.presentation;
 
 import com.example.emb.domain.auth.presentation.dto.response.UserTokenResponse;
-import com.example.emb.domain.manager.presentation.dto.request.UserSignUpRequest;
+import com.example.emb.domain.manager.presentation.dto.request.ManagerSignUpRequest;
 import com.example.emb.domain.manager.service.UserSignUpService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class ManagerController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/accounts")
-    public UserTokenResponse userSignUp(@RequestBody @Valid UserSignUpRequest request) {
+    public UserTokenResponse userSignUp(@RequestBody @Valid ManagerSignUpRequest request) {
         return userSignUpService.execute(request);
     }
 }

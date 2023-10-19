@@ -4,7 +4,7 @@ import com.example.emb.domain.auth.presentation.dto.response.UserTokenResponse;
 import com.example.emb.domain.manager.domain.Manager;
 import com.example.emb.domain.manager.domain.repository.ManagerRepository;
 import com.example.emb.domain.manager.facade.ManagerFacade;
-import com.example.emb.domain.manager.presentation.dto.request.UserSignUpRequest;
+import com.example.emb.domain.manager.presentation.dto.request.ManagerSignUpRequest;
 import com.example.emb.global.property.jwt.JwtProperties;
 import com.example.emb.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +25,7 @@ public class UserSignUpService {
     private final JwtProperties jwtProperties;
 
     @Transactional
-    public UserTokenResponse execute(UserSignUpRequest request) {
+    public UserTokenResponse execute(ManagerSignUpRequest request) {
         managerFacade.checkManagerExists(request.getId());
 
         Manager manager = managerRepository.save(Manager.builder()
