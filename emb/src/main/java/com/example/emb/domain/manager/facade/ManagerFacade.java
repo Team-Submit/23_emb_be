@@ -24,7 +24,7 @@ public class ManagerFacade {
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }
 
-    public Manager getManagerBymanager(Long managerId) {
+    public Manager getManagerBymanagerId(Long managerId) {
         return managerRepository.findById(managerId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }

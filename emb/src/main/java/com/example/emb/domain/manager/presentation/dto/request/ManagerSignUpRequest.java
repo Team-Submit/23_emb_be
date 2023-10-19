@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.Length;
 
 @Getter
 @NoArgsConstructor
-public class UserSignUpRequest {
+public class ManagerSignUpRequest {
 
     @NotBlank(message = "id는 Null, 공백을 허용하지 않습니다.")
     private  String id;
