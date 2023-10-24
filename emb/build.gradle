@@ -32,8 +32,8 @@ dependencies {
 	// jwt
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
-	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
-	// 0.12 대 버전부터 parseClaimsJws메서드 사라짐
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'// 0.12 대 버전부터 parseClaimsJws메서드 사라짐
+
 
 	// mysql
 	runtimeOnly 'com.mysql:mysql-connector-j'

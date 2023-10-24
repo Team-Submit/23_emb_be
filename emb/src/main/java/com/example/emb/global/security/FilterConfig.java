@@ -1,4 +1,4 @@
-package com.example.emb.global.config;
+package com.example.emb.global.security;
 
 import com.example.emb.global.error.filter.GlobalExceptionFilter;
 import com.example.emb.global.security.jwt.JwtTokenFilter;

@@ -1,6 +1,5 @@
 package com.example.emb.global.security;
 
-import com.example.emb.global.config.FilterConfig;
 import com.example.emb.global.security.jwt.JwtTokenProvider;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +36,7 @@ public class SecurityConfig {
 
                 .sessionManagement((sessionManagement) -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
+                // 추후 수정해야함
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/**").permitAll()
                         .anyRequest().permitAll())
