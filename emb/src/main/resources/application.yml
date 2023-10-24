@@ -2,17 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/emb?serverTimezone=Asia/Seoul
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-    username: { username }
-    password: { password }
-=======
-    username: root
-    password: yhm75040611?
-=======
     username: {username}
     password: {password}
->>>>>>> develop
 
   main:
     allow-bean-definition-overriding: true
@@ -21,10 +12,7 @@ spring:
     host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
     password: ${REDIS_PASSWORD}
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> develop
+
 
   security:
     jwt:

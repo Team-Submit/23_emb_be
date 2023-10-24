@@ -16,7 +16,7 @@ import java.time.ZonedDateTime;
 
 @RequiredArgsConstructor
 @Service
-public class UserSignUpService {
+public class AccountSignUpService {
 
     private final ManagerFacade managerFacade;
     private final ManagerRepository managerRepository;
