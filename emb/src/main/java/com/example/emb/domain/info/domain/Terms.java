@@ -18,7 +18,7 @@ public class Terms extends BaseTimeEntity {
     private Long termId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @JoinColumn(name = "user_id")
     private User user;
 
     @NotNull

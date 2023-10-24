@@ -16,7 +16,7 @@ public class InfoController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/personals")
-    public void createFeed(@RequestPart @Valid CreateInfoRequest request) {
+    public void createFeed(@RequestBody @Valid CreateInfoRequest request) {
         createInfoService.execute(request);
     }
 }
