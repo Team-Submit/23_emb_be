@@ -33,7 +33,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "/userId", method = RequestMethod.HEAD)
-    public void checkEmailExist(@NotBlank @RequestParam(name = "userId") String userId) {
+    public void checkUserIdExist(@NotBlank @RequestParam(name = "userId") String userId) {
         checkUserIdExistsService.execute(userId);
     }
 }

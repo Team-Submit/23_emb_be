@@ -2,6 +2,7 @@ package com.example.emb.domain.manager.facade;
 
 import com.example.emb.domain.manager.domain.Manager;
 import com.example.emb.domain.manager.domain.repository.ManagerRepository;
+import com.example.emb.domain.manager.exception.AlreadyManagerExistException;
 import com.example.emb.global.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,19 +16,25 @@ public class ManagerFacade {
 
     public Manager getCurrentManager() {
         String id = SecurityContextHolder.getContext().getAuthentication().getName();
-        return getById(id);
+        return getManagerById(id);
     }
 
-    public Manager getById(String id) {
-        return managerRepository.findById(id).orElseThrow(() -> UserNotFoundException.EXCEPTION);
+    public Manager getManagerById(String id) {
+        return managerRepository.findById(id)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }
 
-    public Boolean checkManagerExists(String id) {
-        return managerRepository.existsById(id);
+    public Manager getManagerBymanagerId(Long managerId) {
+        return managerRepository.findById(managerId)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }
 
-    public Long getManagerId() {
-        return getCurrentManager().getManagerId();
+    public void checkManagerExists(String id) {
+        if(managerRepository.findById(id).isPresent()) {
+            throw AlreadyManagerExistException.EXCEPTION;
+        }
+
+        //return managerRepository.existsById(id);
     }
 
 }
