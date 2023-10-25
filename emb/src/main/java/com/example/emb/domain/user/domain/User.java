@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
@@ -39,4 +40,13 @@ public class User extends BaseTimeEntity {
     @NotNull
     @Length(max = 20)
     private String userNumber;
+
+    @Builder
+    public User(String userId, String userPassword, String department, String userName, String userNumber) {
+        this.userId = userId;
+        this.userPassword = userPassword;
+        this.department = department;
+        this.userName = userName;
+        this.userNumber = userNumber;
+    }
 }
