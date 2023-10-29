@@ -17,7 +17,8 @@ public class UserController {
     @ApiOperation(value = "첫 로그인")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/firstLogin")
-    public void userSignUp(@RequestBody @Valid UserSignUpRequest request) {
+
+    public void userSinUp(@RequestBody @Valid UserSignUpRequest request) {
         userSignUpService.execute(request);
     }
 }
