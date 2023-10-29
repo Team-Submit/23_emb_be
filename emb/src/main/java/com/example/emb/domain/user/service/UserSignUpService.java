@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Service
 public class UserSignUpService {
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -19,9 +20,10 @@ public class UserSignUpService {
 
         return userRepository.save(User.builder()
                 .userName(request.getUserName())
-                .userPassword(passwordEncoder.encode(request.getNewPassword()))
-                .department(request.getDepartment())
+                .userPassword(request.getNewPassword())
+//                .userPassword(passwordEncoder.encode(request.getNewPassword()))
                 .userNumber(request.getUserNumber())
+                .department(request.getDepartment())
                 .build());
     }
 

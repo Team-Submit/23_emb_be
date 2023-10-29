@@ -10,12 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping
+@RequestMapping()
 public class UserController {
 
     private final UserSignUpService userSignUpService;
-
-
     @ApiOperation(value = "첫 로그인")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/firstLogin")
