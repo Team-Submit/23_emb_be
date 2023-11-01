@@ -1,16 +1,14 @@
 package com.example.emb.domain.manager.domain;
 
 import com.example.emb.global.entity.BaseTimeEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@Table(name = "managers")
 @Builder
 @AllArgsConstructor
 public class Manager extends BaseTimeEntity {
