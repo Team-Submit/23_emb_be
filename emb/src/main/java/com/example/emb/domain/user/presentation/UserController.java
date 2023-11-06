@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping()
+@RequestMapping("/users")
 public class UserController {
 
     private final UserSignUpService userSignUpService;
     private final UserLogoutService userLogoutService;
     private UserRepository userRepository;
-    private CheckUserNameExistsService checkUserNameExistsService
+    private CheckUserNameExistsService checkUserNameExistsService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/firstLogin")
