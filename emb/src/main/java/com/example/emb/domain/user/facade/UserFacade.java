@@ -28,4 +28,13 @@ public class UserFacade {
             throw AlreadyUserIdExistsException.EXCEPTION;
         }
     }
+<<<<<<< Updated upstream
+=======
+
+    public void checkUserNameExists(String userName) {
+        if (userRepository.findByUserName(userName).isPresent()) {
+            throw AlreadyUserExistException.EXCEPTION;
+        }
+    }
+>>>>>>> Stashed changes
 }
