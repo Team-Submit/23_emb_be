@@ -58,4 +58,8 @@ public class User extends BaseTimeEntity {
         this.userNumber = userNumber;
         this.department = department;
     }
+    
+    public void setPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
 }
