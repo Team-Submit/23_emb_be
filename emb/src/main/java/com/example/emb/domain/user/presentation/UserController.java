@@ -21,6 +21,7 @@ public class UserController {
     private final UserSignUpService userSignUpService;
     private final UserLogoutService userLogoutService;
     private final UserUpdateService userUpdateService;
+    private final UpdatePasswordService updatePasswordService;
     private UserRepository userRepository;
     private CheckUserNameExistsService checkUserNameExistsService;
 
