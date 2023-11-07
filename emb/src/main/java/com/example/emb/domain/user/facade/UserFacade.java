@@ -29,22 +29,16 @@ public class UserFacade {
             throw AlreadyUserIdExistsException.EXCEPTION;
         }
     }
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
 
     public void checkUserNameExists(String userName) {
         if (userRepository.findByUserName(userName).isPresent()) {
             throw AlreadyUserExistException.EXCEPTION;
         }
     }
->>>>>>> Stashed changes
-=======
 
     public void checkUserNameExists(String userName) {
         if (userRepository.findByUsername(userName).isPresent()) {
             throw AlreadyUserExistException.EXCEPTION;
         }
     }
->>>>>>> develop
 }
