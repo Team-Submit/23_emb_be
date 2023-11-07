@@ -35,5 +35,5 @@ public class UserFacade {
             throw AlreadyUserExistException.EXCEPTION;
         }
     }
-    
+
 }
