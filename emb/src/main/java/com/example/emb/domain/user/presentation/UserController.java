@@ -6,12 +6,7 @@ import com.example.emb.domain.user.service.UserLogoutService;
 import com.example.emb.domain.user.service.CheckUserNameExistsService;
 import com.example.emb.domain.user.service.UserSignUpService;
 import com.example.emb.domain.user.presentation.request.UpdatePasswordRequest;
-import com.example.emb.domain.user.presentation.request.UserUpdateRequest;
 import com.example.emb.domain.user.service.*;
-import io.swagger.annotations.ApiOperation;
-import com.example.emb.domain.user.presentation.request.UserUpdateRequest;
-import com.example.emb.domain.user.service.*;
-import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,10 +19,7 @@ public class UserController {
 
     private final UserSignUpService userSignUpService;
     private final UserLogoutService userLogoutService;
-    private final UserUpdateService userUpdateService;
-    private final AccountDeleteService accountDeleteService;
-    private final UserUpdateService userUpdateService;
-    private final AccountDeleteService accountDeleteService;
+    private final UpdatePasswordService userUpdateService;
     private final UpdatePasswordService updatePasswordService;
     private UserRepository userRepository;
     private CheckUserNameExistsService checkUserNameExistsService;
@@ -48,6 +40,7 @@ public class UserController {
     public void checkUserNameExist(@RequestBody @Valid String userName) {
         checkUserNameExistsService.execute(userName);
     }
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping("/password")
     public void updatePassword(@RequestBody @Valid UpdatePasswordRequest request) {
