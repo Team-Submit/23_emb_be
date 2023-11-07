@@ -2,9 +2,11 @@ package com.example.emb.domain.user.presentation;
 
 import com.example.emb.domain.user.domain.repository.UserRepository;
 import com.example.emb.domain.user.facade.dto.UserSignUpRequest;
-import com.example.emb.domain.user.presentation.request.UserUpdateRequest;
+import com.example.emb.domain.user.service.UserLogoutService;
+import com.example.emb.domain.user.service.CheckUserNameExistsService;
+import com.example.emb.domain.user.service.UserSignUpService;
+import com.example.emb.domain.user.presentation.request.UpdatePasswordRequest;
 import com.example.emb.domain.user.service.*;
-import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,8 +19,6 @@ public class UserController {
 
     private final UserSignUpService userSignUpService;
     private final UserLogoutService userLogoutService;
-    private final UserUpdateService userUpdateService;
-    private final AccountDeleteService accountDeleteService;
     private UserRepository userRepository;
     private CheckUserNameExistsService checkUserNameExistsService;
 
@@ -40,8 +40,8 @@ public class UserController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PostMapping("/accounts/{user-id}")
-    public void userUpdate(@PathVariable ("user-id") String userId) {
-        accountDeleteService.execute(userId);
+    @PatchMapping("/password")
+    public void updatePassword(@RequestBody @Valid UpdatePasswordRequest request) {
+        updatePasswordService.execute(request);
     }
 }
