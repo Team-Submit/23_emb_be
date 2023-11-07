@@ -19,6 +19,7 @@ public class UserController {
 
     private final UserSignUpService userSignUpService;
     private final UserLogoutService userLogoutService;
+    private final UpdatePasswordService updatePasswordService;
     private UserRepository userRepository;
     private CheckUserNameExistsService checkUserNameExistsService;
 
@@ -40,7 +41,7 @@ public class UserController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping("/password")
+    @PatchMapping("/passwords")
     public void updatePassword(@RequestBody @Valid UpdatePasswordRequest request) {
         updatePasswordService.execute(request);
     }
