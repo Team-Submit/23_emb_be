@@ -1,8 +1,10 @@
 package com.example.emb.domain.user.presentation;
 
 import com.example.emb.domain.user.facade.dto.UserSignUpRequest;
+import com.example.emb.domain.user.presentation.request.UserUpdateRequest;
 import com.example.emb.domain.user.service.UserLogoutService;
 import com.example.emb.domain.user.service.UserSignUpService;
+import com.example.emb.domain.user.service.UserUpdateService;
 import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,11 +18,11 @@ public class UserController {
 
     private final UserSignUpService userSignUpService;
     private final UserLogoutService userLogoutService;
+    private final UserUpdateService userUpdateService;
 
     @ApiOperation(value = "첫 로그인")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/firstLogin")
-
     public void userSinUp(@RequestBody @Valid UserSignUpRequest request) {
         userSignUpService.execute(request);
     }
@@ -29,5 +31,11 @@ public class UserController {
     @DeleteMapping("/logout")
     public void logout() {
         userLogoutService.execute();
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PostMapping("/managers/{user-id}")
+    public void userUpdate(@PathVariable ("user-id") String userId, @RequestBody @Valid UserUpdateRequest request) {
+        userUpdateService.execute(userId, request);
     }
 }
