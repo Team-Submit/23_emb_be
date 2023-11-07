@@ -2,6 +2,7 @@ package com.example.emb.domain.user.facade;
 
 import com.example.emb.domain.user.domain.User;
 import com.example.emb.domain.user.domain.repository.UserRepository;
+import com.example.emb.domain.user.exception.AlreadyUserExistException;
 import com.example.emb.domain.user.exception.AlreadyUserIdExistsException;
 import com.example.emb.global.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -28,4 +29,11 @@ public class UserFacade {
             throw AlreadyUserIdExistsException.EXCEPTION;
         }
     }
+
+    public void checkUserNameExists(String userName) {
+        if (userRepository.findByUserName(userName).isPresent()) {
+            throw AlreadyUserExistException.EXCEPTION;
+        }
+    }
+
 }
