@@ -35,10 +35,5 @@ public class UserFacade {
             throw AlreadyUserExistException.EXCEPTION;
         }
     }
-
-    public void checkUserNameExists(String userName) {
-        if (userRepository.findByUsername(userName).isPresent()) {
-            throw AlreadyUserExistException.EXCEPTION;
-        }
-    }
+    
 }
