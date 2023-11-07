@@ -2,6 +2,7 @@ package com.example.emb.domain.user.presentation;
 
 import com.example.emb.domain.user.domain.repository.UserRepository;
 import com.example.emb.domain.user.facade.dto.UserSignUpRequest;
+import com.example.emb.domain.user.presentation.request.UserUpdateRequest;
 import com.example.emb.domain.user.service.UserLogoutService;
 import com.example.emb.domain.user.service.CheckUserNameExistsService;
 import com.example.emb.domain.user.service.UserSignUpService;
@@ -19,6 +20,8 @@ public class UserController {
 
     private final UserSignUpService userSignUpService;
     private final UserLogoutService userLogoutService;
+    private final UserUpdateService userUpdateService;
+
     private UserRepository userRepository;
     private CheckUserNameExistsService checkUserNameExistsService;
 
@@ -43,5 +46,11 @@ public class UserController {
     @PatchMapping("/password")
     public void updatePassword(@RequestBody @Valid UpdatePasswordRequest request) {
         updatePasswordService.execute(request);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PostMapping("/managers/{user-id}")
+    public void userUpdate(@PathVariable ("user-id") String userId, @RequestBody @Valid UserUpdateRequest request) {
+        userUpdateService.execute(userId, request);
     }
 }
