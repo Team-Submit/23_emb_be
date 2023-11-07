@@ -2,6 +2,7 @@ package com.example.emb.domain.user.facade;
 
 import com.example.emb.domain.user.domain.User;
 import com.example.emb.domain.user.domain.repository.UserRepository;
+import com.example.emb.domain.user.exception.AlreadyUserExistException;
 import com.example.emb.domain.user.exception.AlreadyUserIdExistsException;
 import com.example.emb.global.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,7 @@ public class UserFacade {
             throw AlreadyUserIdExistsException.EXCEPTION;
         }
     }
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 
@@ -37,4 +39,12 @@ public class UserFacade {
         }
     }
 >>>>>>> Stashed changes
+=======
+
+    public void checkUserNameExists(String userName) {
+        if (userRepository.findByUsername(userName).isPresent()) {
+            throw AlreadyUserExistException.EXCEPTION;
+        }
+    }
+>>>>>>> develop
 }
