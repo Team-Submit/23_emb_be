@@ -20,4 +20,10 @@ public class ManagerController {
     public UserTokenResponse userSignUp(@RequestBody @Valid ManagerSignUpRequest request) {
         return userSignUpService.execute(request);
     }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PostMapping("/accounts/{user-id}")
+    public void accountDelete(@PathVariable ("user-id") String userId) {
+        userSignUpService.execute(userId);
+    }
 }
