@@ -5,7 +5,7 @@ import com.example.emb.global.error.exception.GlobalErrorCode;
 
 public class AlreadyUserExistException extends EmbException {
 
-    private static final EmbException EXCEPTION = new AlreadyUserExistException();
+    public static final EmbException EXCEPTION = new AlreadyUserExistException();
 
     private AlreadyUserExistException() {
         super(GlobalErrorCode.ALREADY_USER_EXIST);
