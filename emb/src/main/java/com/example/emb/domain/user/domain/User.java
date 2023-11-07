@@ -59,4 +59,5 @@ public class User extends BaseTimeEntity {
     }
     public void setPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
 }
