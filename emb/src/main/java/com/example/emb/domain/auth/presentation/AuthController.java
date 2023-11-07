@@ -4,8 +4,10 @@ import com.example.emb.domain.auth.presentation.dto.request.UserSignInRequest;
 import com.example.emb.domain.auth.presentation.dto.response.UserTokenRefreshResponse;
 import com.example.emb.domain.auth.presentation.dto.response.UserTokenResponse;
 import com.example.emb.domain.auth.service.CheckUserIdExistsService;
+import com.example.emb.domain.auth.service.GetUserInfoService;
 import com.example.emb.domain.auth.service.UserSignInService;
 import com.example.emb.domain.auth.service.UserTokenRefreshService;
+import com.example.emb.domain.user.domain.User;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ public class AuthController {
     private final UserSignInService userSignInService;
     private final UserTokenRefreshService userTokenRefreshService;
     private final CheckUserIdExistsService checkUserIdExistsService;
+    private final GetUserInfoService getUserInfoService;
 
     @PostMapping("/login")
     public UserTokenResponse userSignIn(@RequestBody @Valid UserSignInRequest request) {
@@ -35,5 +38,10 @@ public class AuthController {
     @RequestMapping(value = "/userId", method = RequestMethod.HEAD)
     public void checkUserIdExist(@NotBlank @RequestParam(name = "userId") String userId) {
         checkUserIdExistsService.execute(userId);
+    }
+
+    @GetMapping("/")
+    public User getInfo() {
+        return getUserInfoService.excute();
     }
 }
