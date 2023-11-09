@@ -4,6 +4,7 @@ import com.example.emb.domain.auth.presentation.dto.request.UserSignInRequest;
 import com.example.emb.domain.auth.presentation.dto.response.UserTokenRefreshResponse;
 import com.example.emb.domain.auth.presentation.dto.response.UserTokenResponse;
 import com.example.emb.domain.auth.service.CheckUserIdExistsService;
+import com.example.emb.domain.user.service.GetUserInfoService;
 import com.example.emb.domain.auth.service.UserSignInService;
 import com.example.emb.domain.auth.service.UserTokenRefreshService;
 import jakarta.validation.Valid;
@@ -15,12 +16,13 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/auth")
 public class AuthController {
 
     private final UserSignInService userSignInService;
     private final UserTokenRefreshService userTokenRefreshService;
     private final CheckUserIdExistsService checkUserIdExistsService;
+    private final GetUserInfoService getUserInfoService;
 
     @PostMapping("/login")
     public UserTokenResponse userSignIn(@RequestBody @Valid UserSignInRequest request) {

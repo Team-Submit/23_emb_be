@@ -9,7 +9,14 @@ import com.example.emb.domain.user.service.UserSignUpService;
 import com.example.emb.domain.user.presentation.request.UpdatePasswordRequest;
 import com.example.emb.domain.user.service.*;
 import jakarta.validation.Valid;
+import com.example.emb.domain.user.domain.User;
+import com.example.emb.domain.user.presentation.dto.response.GetUserInfoResponse;
+import com.example.emb.domain.user.service.GetUserInfoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/users")
 public class UserController {
+    private final GetUserInfoService getUserInfoService;
 
     private final UserSignUpService userSignUpService;
     private final UserLogoutService userLogoutService;
@@ -53,4 +61,9 @@ public class UserController {
     public void userUpdate(@PathVariable ("user-id") String userId, @RequestBody @Valid UserUpdateRequest request) {
         userUpdateService.execute(userId, request);
     }
+    @GetMapping("/informations/{user-id}")
+    public GetUserInfoResponse getInfo(@PathVariable("user-id") String userId) {
+        return getUserInfoService.excute(userId);
+    }
+
 }
