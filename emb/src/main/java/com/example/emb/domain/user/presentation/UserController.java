@@ -1,15 +1,15 @@
 package com.example.emb.domain.user.presentation;
 
+import com.example.emb.domain.user.domain.Department;
 import com.example.emb.domain.user.domain.repository.UserRepository;
 import com.example.emb.domain.user.facade.dto.UserSignUpRequest;
-import com.example.emb.domain.user.presentation.request.UserUpdateRequest;
+import com.example.emb.domain.user.presentation.dto.request.UpdatePasswordRequest;
+import com.example.emb.domain.user.presentation.dto.request.UserUpdateRequest;
 import com.example.emb.domain.user.service.UserLogoutService;
 import com.example.emb.domain.user.service.CheckUserNameExistsService;
 import com.example.emb.domain.user.service.UserSignUpService;
-import com.example.emb.domain.user.presentation.request.UpdatePasswordRequest;
 import com.example.emb.domain.user.service.*;
 import jakarta.validation.Valid;
-import com.example.emb.domain.user.domain.User;
 import com.example.emb.domain.user.presentation.dto.response.GetUserInfoResponse;
 import com.example.emb.domain.user.service.GetUserInfoService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -30,6 +32,7 @@ public class UserController {
     private final UserLogoutService userLogoutService;
     private final UserUpdateService userUpdateService;
     private final UpdatePasswordService updatePasswordService;
+    private final DepartmentService departmentService;
     private UserRepository userRepository;
     private CheckUserNameExistsService checkUserNameExistsService;
 
@@ -61,9 +64,15 @@ public class UserController {
     public void userUpdate(@PathVariable ("user-id") String userId, @RequestBody @Valid UserUpdateRequest request) {
         userUpdateService.execute(userId, request);
     }
+
     @GetMapping("/informations/{user-id}")
     public GetUserInfoResponse getInfo(@PathVariable("user-id") String userId) {
         return getUserInfoService.excute(userId);
+    }
+
+    @GetMapping("/token/departmentLists")
+    public List<Department> getInfoLists() {
+        return departmentService.excute();
     }
 
 }

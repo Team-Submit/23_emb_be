@@ -3,7 +3,7 @@ package com.example.emb.domain.user.service;
 import com.example.emb.domain.auth.exception.PasswordMisMatchException;
 import com.example.emb.domain.user.domain.User;
 import com.example.emb.domain.user.facade.UserFacade;
-import com.example.emb.domain.user.presentation.request.UpdatePasswordRequest;
+import com.example.emb.domain.user.presentation.dto.request.UpdatePasswordRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

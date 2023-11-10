@@ -1,4 +1,4 @@
-package com.example.emb.domain.user.presentation.request;
+package com.example.emb.domain.user.presentation.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
