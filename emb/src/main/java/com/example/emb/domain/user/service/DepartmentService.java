@@ -15,7 +15,7 @@ public class DepartmentService {
 
     public List<Department> excute() {
 
-        List<Department> departments = departmentRepository.findAllByDepartment();
+        List<Department> departments = departmentRepository.findAll();
         return departments;
     }
 }
