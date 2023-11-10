@@ -70,7 +70,7 @@ public class UserController {
         return getUserInfoService.excute(userId);
     }
 
-    @GetMapping("firstLogindepartmentLists")
+    @GetMapping("/token/departmentLists")
     public List<Department> getInfoLists() {
         return departmentService.excute();
     }
