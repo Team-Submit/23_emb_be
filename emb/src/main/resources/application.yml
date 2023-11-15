@@ -28,8 +28,6 @@ spring:
       ddl-auto: update
     show_sql: true
 
-
-
 logging:
   level:
     org.hibernate.SQL: debug
