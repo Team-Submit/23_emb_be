@@ -1,10 +1,11 @@
 package com.example.emb.domain.manager.service;
 
 import com.example.emb.domain.auth.presentation.dto.response.UserTokenResponse;
-import com.example.emb.domain.manager.domain.Manager;
-import com.example.emb.domain.manager.domain.repository.ManagerRepository;
 import com.example.emb.domain.manager.facade.ManagerFacade;
 import com.example.emb.domain.manager.presentation.dto.request.ManagerSignUpRequest;
+import com.example.emb.domain.user.domain.User;
+import com.example.emb.domain.user.domain.repository.UserRepository;
+import com.example.emb.domain.user.facade.UserFacade;
 import com.example.emb.global.property.jwt.JwtProperties;
 import com.example.emb.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -19,22 +20,23 @@ import java.time.ZonedDateTime;
 public class AccountSignUpService {
 
     private final ManagerFacade managerFacade;
-    private final ManagerRepository managerRepository;
+    private final UserFacade userFacade;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final JwtProperties jwtProperties;
+    private final UserRepository userRepository;
 
     @Transactional
     public UserTokenResponse execute(ManagerSignUpRequest request) {
-        managerFacade.checkManagerExists(request.getId());
+        userFacade.checkUserIdExists(request.getId());
 
-        Manager manager = managerRepository.save(Manager.builder()
-                .id(request.getId())
-                .password(passwordEncoder.encode(request.getPassword()))
+        User user = userRepository.save(User.builder()
+                .userId(request.getId())
+                .userPassword(passwordEncoder.encode(request.getPassword()))
                 .build());
         
-        String accessToken = jwtTokenProvider.generateAccessToken(manager.getId());
-        String refreshToken = jwtTokenProvider.generateRefreshToken(manager.getId());
+        String accessToken = jwtTokenProvider.generateAccessToken(user.getUserId());
+        String refreshToken = jwtTokenProvider.generateRefreshToken(user.getUserId());
         
         return UserTokenResponse.builder()
                 .accessToken(accessToken)
