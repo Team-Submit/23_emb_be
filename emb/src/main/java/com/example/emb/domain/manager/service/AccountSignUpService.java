@@ -5,7 +5,10 @@ import com.example.emb.domain.manager.facade.ManagerFacade;
 import com.example.emb.domain.manager.presentation.dto.request.ManagerSignUpRequest;
 import com.example.emb.domain.user.domain.User;
 import com.example.emb.domain.user.domain.repository.UserRepository;
+<<<<<<< Updated upstream
 import com.example.emb.domain.user.facade.UserFacade;
+=======
+>>>>>>> Stashed changes
 import com.example.emb.global.property.jwt.JwtProperties;
 import com.example.emb.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +23,10 @@ import java.time.ZonedDateTime;
 public class AccountSignUpService {
 
     private final ManagerFacade managerFacade;
+<<<<<<< Updated upstream
     private final UserFacade userFacade;
+=======
+>>>>>>> Stashed changes
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
     private final JwtProperties jwtProperties;
