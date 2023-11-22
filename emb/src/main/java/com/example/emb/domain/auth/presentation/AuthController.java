@@ -10,6 +10,7 @@ import com.example.emb.domain.auth.service.UserTokenRefreshService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,7 @@ public class AuthController {
     private final CheckUserIdExistsService checkUserIdExistsService;
     private final GetUserInfoService getUserInfoService;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/login")
     public UserTokenResponse userSignIn(@RequestBody @Valid UserSignInRequest request) {
         return userSignInService.execute(request);
