@@ -1,4 +1,4 @@
-package com.example.emb.domain.user.facade.dto;
+package com.example.emb.domain.user.presentation.dto.request;
 
 import io.swagger.annotations.ApiModelProperty;
 import jakarta.validation.constraints.NotEmpty;

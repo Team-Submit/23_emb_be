@@ -13,8 +13,8 @@ public class GetUserInfoService {
 
     private final UserRepository userRepository;
 
-    public GetUserInfoResponse excute(String userId) {
-        User user = userRepository.findByUserId(userId)
+    public GetUserInfoResponse excute(Long userId) {
+        User user = userRepository.findByNumber(userId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
         return GetUserInfoResponse.builder()

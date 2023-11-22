@@ -30,8 +30,9 @@ public class ManagerController {
         return userSignUpService.execute(request);
     }
 
+    //Long
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PostMapping("/accounts/{user-id}")
+    @DeleteMapping("/accounts/{user-id}")
     public void accountDelete(@PathVariable ("user-id") String userId) {
         accountDeleteService.execute(userId);
     @ResponseStatus(HttpStatus.OK)
