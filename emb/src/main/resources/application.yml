@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/emb?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://${URL}:3306/emb?serverTimezone=Asia/Seoul
     username: {username}
     password: {password}
 
@@ -27,8 +27,6 @@ spring:
     hibernate:
       ddl-auto: update
     show_sql: true
-
-
 
 logging:
   level:
