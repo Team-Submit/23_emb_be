@@ -14,8 +14,8 @@ public class UserUpdateService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void execute(String userId, UserUpdateRequest request) {
-        User user = userRepository.findByUserId(userId)
+    public void execute(Long userId, UserUpdateRequest request) {
+        User user = userRepository.findByNumber(userId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
         user.Userupdate(request.getUserName(), request.getUserNumber(), request.getDepartment());

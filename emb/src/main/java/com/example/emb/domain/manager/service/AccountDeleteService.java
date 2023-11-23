@@ -14,8 +14,8 @@ public class AccountDeleteService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void execute(String userId) {
-        User user = userRepository.findByUserId(userId)
+    public void execute(Long userId) {
+        User user = userRepository.findByNumber(userId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
         userRepository.delete(user);

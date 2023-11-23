@@ -2,9 +2,11 @@ package com.example.emb.domain.user.presentation;
 
 import com.example.emb.domain.user.domain.Department;
 import com.example.emb.domain.user.domain.repository.UserRepository;
-import com.example.emb.domain.user.facade.dto.UserSignUpRequest;
+import com.example.emb.domain.user.presentation.dto.request.UserNameRequest;
+import com.example.emb.domain.user.presentation.dto.request.UserSignUpRequest;
 import com.example.emb.domain.user.presentation.dto.request.UpdatePasswordRequest;
 import com.example.emb.domain.user.presentation.dto.request.UserUpdateRequest;
+import com.example.emb.domain.user.presentation.dto.response.UserSignUpResponse;
 import com.example.emb.domain.user.service.UserLogoutService;
 import com.example.emb.domain.user.service.CheckUserNameExistsService;
 import com.example.emb.domain.user.service.UserSignUpService;
@@ -33,13 +35,13 @@ public class UserController {
     private final UserUpdateService userUpdateService;
     private final UpdatePasswordService updatePasswordService;
     private final DepartmentService departmentService;
-    private UserRepository userRepository;
-    private CheckUserNameExistsService checkUserNameExistsService;
+    private final UserRepository userRepository;
+    private final CheckUserNameExistsService checkUserNameExistsService;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/firstLogin")
-    public void userSinUp(@RequestBody @Valid UserSignUpRequest request) {
-        userSignUpService.execute(request);
+    @PatchMapping("/firstLogin/{user-id}")
+    public UserSignUpResponse userSinUp(@PathVariable ("user-id") Long userId, @RequestBody @Valid UserSignUpRequest request) {
+        return userSignUpService.execute(userId, request);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -48,9 +50,9 @@ public class UserController {
         userLogoutService.execute();
     }
 
-    @PostMapping("/firstLoginCheck")
-    public void checkUserNameExist(@RequestBody @Valid String userName) {
-        checkUserNameExistsService.execute(userName);
+    @GetMapping("/firstLoginCheck/{user-id}")
+    public void checkUserNameExist(@PathVariable ("user-id") Long userId, @RequestBody @Valid UserNameRequest request) {
+        checkUserNameExistsService.execute(userId, request);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -61,12 +63,12 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PostMapping("/managers/{user-id}")
-    public void userUpdate(@PathVariable ("user-id") String userId, @RequestBody @Valid UserUpdateRequest request) {
+    public void userUpdate(@PathVariable ("user-id") Long userId, @RequestBody @Valid UserUpdateRequest request) {
         userUpdateService.execute(userId, request);
     }
 
     @GetMapping("/informations/{user-id}")
-    public GetUserInfoResponse getInfo(@PathVariable("user-id") String userId) {
+    public GetUserInfoResponse getInfo(@PathVariable("user-id") Long userId) {
         return getUserInfoService.excute(userId);
     }
 

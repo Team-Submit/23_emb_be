@@ -29,15 +29,12 @@ public class User extends BaseTimeEntity {
     @Length(min = 8, max = 255, message = "userPassword필드는 {min} 글자 이상 {max} 글자 이하여야 합니다.")
     private String userPassword;
 
-    @NotNull(message = "필드는 비어 있을 수 없습니다.")
     @Length(max = 255, message = "department필드는 {max} 글자 이하여야 합니다.")
     private String department;
 
-    @NotNull(message = "필드는 비어 있을 수 없습니다.")
     @Length(max = 50, message = "userName필드는 {max} 글자 이하여야 합니다.")
     private String userName;
 
-    @NotNull(message = "필드는 비어 있을 수 없습니다.")
     @Length(max = 20, message = "userNumber필드는 {max} 글자 이하여야 합니다.")
     private String userNumber;
 
@@ -52,6 +49,13 @@ public class User extends BaseTimeEntity {
 
     public void Userupdate(String userName, String userNumber, String department) {
         this.userName = userName;
+        this.userNumber = userNumber;
+        this.department = department;
+    }
+
+    public void UserSignUp(String userName, String userPassword, String userNumber, String department) {
+        this.userName = userName;
+        this.userPassword = userPassword;
         this.userNumber = userNumber;
         this.department = department;
     }
