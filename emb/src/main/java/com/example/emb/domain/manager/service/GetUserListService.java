@@ -3,7 +3,10 @@ import com.example.emb.domain.user.domain.User;
 import com.example.emb.domain.user.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -11,13 +14,16 @@ import java.util.stream.Collectors;
 public class GetUserListService {
     private final UserRepository userRepository;
 
-    public List<User> getUserList() {
+    public List<Map<String, String>> getUserList() {
         return userRepository.findAll().stream()
-                .map(user -> new User(
-                        user.getUserName(),
-                        user.getDepartment(),
-                        user.getUserNumber()
-                )).collect(Collectors.toList());
+                .map(user -> {
+                    Map<String, String> userMap = new HashMap<>();
+                    userMap.put("department", user.getDepartment());
+                    userMap.put("userName", user.getUserName());
+                    userMap.put("userNumber", user.getUserNumber());
+                    return userMap;
+                })
+                .collect(Collectors.toList());
     }
 }
 
