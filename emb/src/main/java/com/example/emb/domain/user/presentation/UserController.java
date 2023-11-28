@@ -39,9 +39,9 @@ public class UserController {
     private final CheckUserNameExistsService checkUserNameExistsService;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PatchMapping("/firstLogin/{user-id}")
-    public UserSignUpResponse userSinUp(@PathVariable ("user-id") Long userId, @RequestBody @Valid UserSignUpRequest request) {
-        return userSignUpService.execute(userId, request);
+    @PatchMapping("/firstLogin")
+    public UserSignUpResponse userSinUp(@RequestBody @Valid UserSignUpRequest request) {
+        return userSignUpService.execute(request);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

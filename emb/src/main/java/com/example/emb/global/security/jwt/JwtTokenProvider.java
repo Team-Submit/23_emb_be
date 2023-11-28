@@ -29,6 +29,7 @@ public class JwtTokenProvider {
     private final AuthDetailsService authDetailsService;
     private final RefreshTokenRepository refreshTokenRepository;
 
+
     private static final String HEADER = "Authorization";
     private static final String PREFIX = "Bearer";
 
@@ -50,10 +51,8 @@ public class JwtTokenProvider {
 
     private String generateToken(String id, String type, Long exp) {
 
-        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-
         return Jwts.builder()
-                .signWith(key, SignatureAlgorithm.HS256)
+                .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
                 .setSubject(id)
                 .claim("type", type)
                 .setIssuedAt(new Date())
@@ -87,17 +86,12 @@ public class JwtTokenProvider {
     private Claims getTokenBody(String token) {
 
         try {
-
-            Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-
-            return Jwts.parserBuilder()
-                    .setSigningKey(key)
-                    .build()
-                    .parseClaimsJws(token)
-                    .getBody();
+            return Jwts.parser().setSigningKey(jwtProperties.getSecretKey())
+                    .parseClaimsJws(token).getBody();
         } catch (io.jsonwebtoken.ExpiredJwtException e) {
             throw ExpiredJwtException.EXCEPTION;
         } catch (Exception e) {
+            e.printStackTrace();
             throw InvalidJwtException.EXCEPTION;
         }
     }
