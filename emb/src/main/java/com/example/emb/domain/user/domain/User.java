@@ -1,16 +1,14 @@
 package com.example.emb.domain.user.domain;
 
 import com.example.emb.global.entity.BaseTimeEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -38,6 +36,7 @@ public class User extends BaseTimeEntity {
     @Length(max = 20, message = "userNumber필드는 {max} 글자 이하여야 합니다.")
     private String userNumber;
 
+
     @Builder
     public User(String userId, String userPassword, String department, String userName, String userNumber) {
         this.userId = userId;
@@ -63,4 +62,5 @@ public class User extends BaseTimeEntity {
     public void setPassword(String userPassword) {
         this.userPassword = userPassword;
     }
+
 }

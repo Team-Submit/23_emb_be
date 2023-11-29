@@ -12,7 +12,7 @@ public class GetUserInfoService {
 
     private final UserFacade userFacade;
 
-    public GetUserInfoResponse excute() {
+    public GetUserInfoResponse execute() {
 
         User user = userFacade.getCurrentUser();
 
