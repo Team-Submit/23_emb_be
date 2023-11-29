@@ -2,7 +2,7 @@ package com.example.emb.domain.manager.service;
 
 import com.example.emb.domain.user.domain.User;
 import com.example.emb.domain.user.domain.repository.UserRepository;
-import com.example.emb.global.exception.UserNotFoundException;
+import com.example.emb.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,11 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class AccountDeleteService {
 
     private final UserRepository userRepository;
+    private final UserFacade userFacade;
 
     @Transactional
-    public void execute(Long userId) {
-        User user = userRepository.findByNumber(userId)
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+    public void execute() {
+
+        User user = userFacade.getCurrentUser();
 
         userRepository.delete(user);
     }

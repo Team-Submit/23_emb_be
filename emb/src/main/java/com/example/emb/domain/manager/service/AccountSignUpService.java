@@ -1,7 +1,6 @@
 package com.example.emb.domain.manager.service;
 
 import com.example.emb.domain.auth.presentation.dto.response.UserTokenResponse;
-import com.example.emb.domain.manager.facade.ManagerFacade;
 import com.example.emb.domain.manager.presentation.dto.request.ManagerSignUpRequest;
 import com.example.emb.domain.user.domain.User;
 import com.example.emb.domain.user.domain.repository.UserRepository;
@@ -19,7 +18,6 @@ import java.time.ZonedDateTime;
 @Service
 public class AccountSignUpService {
 
-    private final ManagerFacade managerFacade;
     private final UserFacade userFacade;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;

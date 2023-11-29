@@ -1,9 +1,8 @@
 package com.example.emb.domain.user.service;
 
 import com.example.emb.domain.user.domain.User;
-import com.example.emb.domain.user.domain.repository.UserRepository;
+import com.example.emb.domain.user.facade.UserFacade;
 import com.example.emb.domain.user.presentation.dto.response.GetUserInfoResponse;
-import com.example.emb.global.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +10,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class GetUserInfoService {
 
-    private final UserRepository userRepository;
+    private final UserFacade userFacade;
 
-    public GetUserInfoResponse excute(Long userId) {
-        User user = userRepository.findByNumber(userId)
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+    public GetUserInfoResponse excute() {
+
+        User user = userFacade.getCurrentUser();
 
         return GetUserInfoResponse.builder()
                 .department(user.getDepartment())

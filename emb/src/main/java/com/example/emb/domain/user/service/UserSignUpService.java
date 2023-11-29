@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserSignUpService {
 
-    private final UserRepository userRepository;
     private final UserFacade userFacade;
     private final PasswordEncoder passwordEncoder;
 
