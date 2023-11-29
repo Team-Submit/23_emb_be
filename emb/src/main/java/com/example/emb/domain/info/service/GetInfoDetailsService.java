@@ -12,8 +12,9 @@ public class GetInfoDetailsService {
 
     private final TermsRepository termsRepository;
 
-    public GetInfoDetailsResponse getDetails(Long id) {
-        Terms terms = termsRepository.findByTermId(id);
+    public GetInfoDetailsResponse getDetails(Long term_id) {
+
+        Terms terms = termsRepository.findByTermId(term_id);
 
         return new GetInfoDetailsResponse(
                 terms.getName(),
