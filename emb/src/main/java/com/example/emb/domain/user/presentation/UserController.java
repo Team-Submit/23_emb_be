@@ -1,7 +1,6 @@
 package com.example.emb.domain.user.presentation;
 
 import com.example.emb.domain.user.domain.Department;
-import com.example.emb.domain.user.domain.repository.UserRepository;
 import com.example.emb.domain.user.presentation.dto.request.UserNameRequest;
 import com.example.emb.domain.user.presentation.dto.request.UserSignUpRequest;
 import com.example.emb.domain.user.presentation.dto.request.UpdatePasswordRequest;
@@ -16,7 +15,6 @@ import com.example.emb.domain.user.presentation.dto.response.GetUserInfoResponse
 import com.example.emb.domain.user.service.GetUserInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
@@ -35,7 +33,6 @@ public class UserController {
     private final UserUpdateService userUpdateService;
     private final UpdatePasswordService updatePasswordService;
     private final DepartmentService departmentService;
-    private final UserRepository userRepository;
     private final CheckUserNameExistsService checkUserNameExistsService;
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -50,9 +47,9 @@ public class UserController {
         userLogoutService.execute();
     }
 
-    @GetMapping("/firstLoginCheck/{user-id}")
-    public void checkUserNameExist(@PathVariable ("user-id") Long userId, @RequestBody @Valid UserNameRequest request) {
-        checkUserNameExistsService.execute(userId, request);
+    @GetMapping("/firstLoginCheck")
+    public void checkUserNameExist(@RequestBody @Valid UserNameRequest request) {
+        checkUserNameExistsService.execute(request);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -62,14 +59,14 @@ public class UserController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PostMapping("/managers/{user-id}")
-    public void userUpdate(@PathVariable ("user-id") Long userId, @RequestBody @Valid UserUpdateRequest request) {
-        userUpdateService.execute(userId, request);
+    @PostMapping("/managers")
+    public void userUpdate(@RequestBody @Valid UserUpdateRequest request) {
+        userUpdateService.execute(request);
     }
 
-    @GetMapping("/informations/{user-id}")
-    public GetUserInfoResponse getInfo(@PathVariable("user-id") Long userId) {
-        return getUserInfoService.excute(userId);
+    @GetMapping("/informations")
+    public GetUserInfoResponse getInfo() {
+        return getUserInfoService.excute();
     }
 
     @GetMapping("/token/departmentLists")
