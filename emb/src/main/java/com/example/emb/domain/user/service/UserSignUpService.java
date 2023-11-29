@@ -1,7 +1,6 @@
 package com.example.emb.domain.user.service;
 
 import com.example.emb.domain.user.domain.User;
-import com.example.emb.domain.user.domain.repository.UserRepository;
 import com.example.emb.domain.user.facade.UserFacade;
 import com.example.emb.domain.user.presentation.dto.request.UserSignUpRequest;
 import com.example.emb.domain.user.presentation.dto.response.UserSignUpResponse;
@@ -23,7 +22,6 @@ public class UserSignUpService {
         User user = userFacade.getCurrentUser();
 
         user.UserSignUp(request.getUserName(), passwordEncoder.encode(request.getNewPassword()), request.getUserNumber(), request.getDepartment());
-
 
         return UserSignUpResponse.builder()
                 .userName(request.getUserName())

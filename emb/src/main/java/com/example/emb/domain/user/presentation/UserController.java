@@ -1,6 +1,5 @@
 package com.example.emb.domain.user.presentation;
 
-import com.example.emb.domain.user.domain.Department;
 import com.example.emb.domain.user.presentation.dto.request.UserNameRequest;
 import com.example.emb.domain.user.presentation.dto.request.UserSignUpRequest;
 import com.example.emb.domain.user.presentation.dto.request.UpdatePasswordRequest;
@@ -66,12 +65,12 @@ public class UserController {
 
     @GetMapping("/informations")
     public GetUserInfoResponse getInfo() {
-        return getUserInfoService.excute();
+        return getUserInfoService.execute();
     }
 
     @GetMapping("/token/departmentLists")
-    public List<Department> getInfoLists() {
-        return departmentService.excute();
+    public List<String> getInfoLists() {
+        return departmentService.execute();
     }
 
 }
