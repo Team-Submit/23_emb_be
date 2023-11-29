@@ -29,9 +29,9 @@ public class ManagerController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/accounts/{user-id}")
-    public void accountDelete(@PathVariable ("user-id") Long userId) {
-        accountDeleteService.execute(userId);
+    @DeleteMapping("/accounts")
+    public void accountDelete() {
+        accountDeleteService.execute();
     }
 
     @ResponseStatus(HttpStatus.OK)
