@@ -28,12 +28,6 @@ public class InfoController {
         createInfoService.execute(request);
     }
 
-<<<<<<< Updated upstream
-    @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping("/details{id}")
-    public GetInfoDetailsResponse getDetails(@PathVariable("id") Long id) {
-        return getInfoDetailsService.getDetails(id);
-=======
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/search")
     public List<Terms> searchFeed(@RequestParam String name, @RequestParam(required = false) String birthdate) {
@@ -44,6 +38,5 @@ public class InfoController {
     @GetMapping("/details{term_id}")
     public GetInfoDetailsResponse getDetails(@PathVariable("term_id") Long term_id) {
         return getInfoDetailsService.getDetails(term_id);
->>>>>>> Stashed changes
     }
 }
