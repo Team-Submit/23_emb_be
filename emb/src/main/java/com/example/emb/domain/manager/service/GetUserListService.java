@@ -20,6 +20,7 @@ public class GetUserListService {
                     userMap.put("department", user.getDepartment());
                     userMap.put("userName", user.getUserName());
                     userMap.put("userNumber", user.getUserNumber());
+                    userMap.put("user_id", String.valueOf(user.getNumber()));
                     return userMap;
                 })
                 .collect(Collectors.toList());
