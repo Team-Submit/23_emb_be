@@ -8,6 +8,9 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
+  my-env:
+    first: ${FIRST_MALLANG_ENV}
+    second: ${SECOND_MALLANG_ENV}
   redis:
     host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
