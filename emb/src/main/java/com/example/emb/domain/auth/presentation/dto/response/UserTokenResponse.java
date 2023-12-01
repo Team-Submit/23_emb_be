@@ -16,4 +16,6 @@ public class UserTokenResponse {
     private final ZonedDateTime expiredAt;
 
     private final String refreshToken;
+
+    private final Boolean um;
 }
