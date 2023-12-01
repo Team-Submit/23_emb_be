@@ -46,7 +46,7 @@ public class UserController {
         userLogoutService.execute();
     }
 
-    @GetMapping("/firstLoginCheck")
+    @PostMapping("/firstLoginCheck")
     public void checkUserNameExist(@RequestBody @Valid UserNameRequest request) {
         checkUserNameExistsService.execute(request);
     }
