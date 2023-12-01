@@ -25,32 +25,36 @@ public class UserSignInService {
 
     @Transactional
     public UserTokenResponse execute(UserSignInRequest request) {
-        User user = userRepository.findByUserId(request.getId())
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
         Manager manager = managerRepository.findById(request.getId()).orElse(null);
 
-        if (!passwordEncoder.matches(request.getPassword(), user.getUserPassword())) {
-            throw PasswordMisMatchException.EXCEPTION;
-        }
+        User user = userRepository.findByUserId(request.getId()).orElse(null);
 
-        String accessToken = jwtTokenProvider.generateAccessToken(user.getUserId());
-        String refreshToken = jwtTokenProvider.generateRefreshToken(user.getUserId());
+        if(user != null) {
+            if (!passwordEncoder.matches(request.getPassword(), user.getUserPassword())) {
+                throw PasswordMisMatchException.EXCEPTION;
+            }
+            return generateTokenResponse(user.getUserId(), false);
+        } else if (manager != null) {
+            if (!passwordEncoder.matches(request.getPassword(), manager.getPassword())) {
+                throw PasswordMisMatchException.EXCEPTION;
+            }
+            return generateTokenResponse(manager.getId(), true);
 
-        if (manager != null) {
-            return UserTokenResponse.builder()
-                    .accessToken(accessToken)
-                    .expiredAt(jwtTokenProvider.getExpiredTime())
-                    .refreshToken(refreshToken)
-                    .um(true)
-                    .build();
         } else {
-            return UserTokenResponse.builder()
-                    .accessToken(accessToken)
-                    .expiredAt(jwtTokenProvider.getExpiredTime())
-                    .refreshToken(refreshToken)
-                    .um(false)
-                    .build();
+            throw UserNotFoundException.EXCEPTION;
         }
+    }
+
+    private UserTokenResponse generateTokenResponse(String userId, boolean isManager) {
+        String accessToken = jwtTokenProvider.generateAccessToken(userId);
+        String refreshToken = jwtTokenProvider.generateRefreshToken(userId);
+
+        return UserTokenResponse.builder()
+                .accessToken(accessToken)
+                .expiredAt(jwtTokenProvider.getExpiredTime())
+                .refreshToken(refreshToken)
+                .um(isManager)
+                .build();
     }
 }

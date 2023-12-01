@@ -24,8 +24,8 @@ public class ManagerController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/accounts")
-    public UserTokenResponse userSignUp(@RequestBody @Valid ManagerSignUpRequest request) {
-        return userSignUpService.execute(request);
+    public void userSignUp(@RequestBody @Valid ManagerSignUpRequest request) {
+        userSignUpService.execute(request);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

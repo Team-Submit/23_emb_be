@@ -20,26 +20,15 @@ public class AccountSignUpService {
 
     private final UserFacade userFacade;
     private final PasswordEncoder passwordEncoder;
-    private final JwtTokenProvider jwtTokenProvider;
-    private final JwtProperties jwtProperties;
     private final UserRepository userRepository;
 
     @Transactional
-    public UserTokenResponse execute(ManagerSignUpRequest request) {
+    public void execute(ManagerSignUpRequest request) {
         userFacade.checkUserIdExists(request.getId());
 
-        User user = userRepository.save(User.builder()
+        userRepository.save(User.builder()
                 .userId(request.getId())
                 .userPassword(passwordEncoder.encode(request.getPassword()))
                 .build());
-        
-        String accessToken = jwtTokenProvider.generateAccessToken(user.getUserId());
-        String refreshToken = jwtTokenProvider.generateRefreshToken(user.getUserId());
-        
-        return UserTokenResponse.builder()
-                .accessToken(accessToken)
-                .expiredAt(ZonedDateTime.now().plusSeconds(jwtProperties.getAccessExp()))
-                .refreshToken(refreshToken)
-                .build();
     }
 }
