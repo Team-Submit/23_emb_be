@@ -5,6 +5,7 @@ import com.example.emb.domain.manager.presentation.dto.request.ManagerSignUpRequ
 import com.example.emb.domain.manager.service.AccountDeleteService;
 import com.example.emb.domain.manager.service.AccountSignUpService;
 import com.example.emb.domain.manager.service.GetUserListService;
+import com.example.emb.domain.manager.service.MService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,11 +22,18 @@ public class ManagerController {
     private final AccountSignUpService userSignUpService;
     private final AccountDeleteService accountDeleteService;
     private final GetUserListService getUserListService;
+    private final MService mService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/accounts")
     public void userSignUp(@RequestBody @Valid ManagerSignUpRequest request) {
         userSignUpService.execute(request);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/a")
+    public void SignUp(@RequestBody @Valid ManagerSignUpRequest request) {
+        mService.execute(request);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

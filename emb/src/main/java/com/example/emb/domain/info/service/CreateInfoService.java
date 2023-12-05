@@ -21,13 +21,14 @@ public class CreateInfoService {
         User user = userFacade.getCurrentUser();
 
         Terms terms = Terms.builder()
-                .user(user)
                 .name(request.getName())
                 .birthdate(request.getBirthdate())
                 .address(request.getAddress())
                 .firstTenure(request.getFirstTenure())
                 .lastTenure(request.getLastTenure())
                 .occupation(request.getOccupation())
+                .userName(user.getUserName())
+                .userNumber(user.getUserNumber())
                 .build();
         termsRepository.save(terms);
     }
