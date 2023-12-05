@@ -17,34 +17,26 @@ public class Terms extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long termId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @NotNull
     private  String name;
 
-    @NotNull
     private  String birthdate;
 
-    @NotNull
     private  String address;
 
-    @NotNull
     private  String firstTenure;
 
-    @NotNull
     private  String lastTenure;
 
-    @NotNull
     private  String occupation;
 
-    @NotNull
     private  String department;
 
-    @NotNull
     private  String userName;
 
-    @NotNull
     private  String userNumber;
+
+    public Long getTermId() {
+        return termId;
+    }
+
 }

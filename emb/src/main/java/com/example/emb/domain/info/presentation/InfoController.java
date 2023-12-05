@@ -1,8 +1,8 @@
 package com.example.emb.domain.info.presentation;
 
-import com.example.emb.domain.info.domain.Terms;
 import com.example.emb.domain.info.presentation.dto.request.CreateInfoRequest;
 import com.example.emb.domain.info.presentation.dto.response.GetInfoDetailsResponse;
+import com.example.emb.domain.info.presentation.dto.response.SearchResponse;
 import com.example.emb.domain.info.service.CreateInfoService;
 import com.example.emb.domain.info.service.GetInfoDetailsService;
 import com.example.emb.domain.info.service.SearchInfoService;
@@ -30,7 +30,7 @@ public class InfoController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/search")
-    public List<Terms> searchFeed(@RequestParam String name, @RequestParam(required = false) String birthdate) {
+    public List<SearchResponse> searchFeed(@RequestParam String name, @RequestParam(required = false) String birthdate) {
         return searchInfoService.execute(name, birthdate);
     }
 
