@@ -4,6 +4,7 @@ import com.example.emb.domain.user.presentation.dto.request.UserNameRequest;
 import com.example.emb.domain.user.presentation.dto.request.UserSignUpRequest;
 import com.example.emb.domain.user.presentation.dto.request.UpdatePasswordRequest;
 import com.example.emb.domain.user.presentation.dto.request.UserUpdateRequest;
+import com.example.emb.domain.user.presentation.dto.response.UserCheckResponse;
 import com.example.emb.domain.user.presentation.dto.response.UserSignUpResponse;
 import com.example.emb.domain.user.service.UserLogoutService;
 import com.example.emb.domain.user.service.CheckUserNameExistsService;
@@ -46,9 +47,9 @@ public class UserController {
         userLogoutService.execute();
     }
 
-    @PostMapping("/firstLoginCheck")
-    public void checkUserNameExist(@RequestBody @Valid UserNameRequest request) {
-        checkUserNameExistsService.execute(request);
+    @PatchMapping("/firstLoginCheck")
+    public UserCheckResponse checkUserNameExist(@RequestBody @Valid UserNameRequest request) {
+        return checkUserNameExistsService.execute(request);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)

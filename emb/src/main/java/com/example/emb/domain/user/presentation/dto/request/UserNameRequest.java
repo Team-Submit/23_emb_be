@@ -9,5 +9,5 @@ import org.hibernate.validator.constraints.Length;
 public class UserNameRequest {
 
     @Length(max = 255, message = "필드는 {max} 글자 이하여야 합니다.")
-    private String userName;
+    private String userid;
 }
