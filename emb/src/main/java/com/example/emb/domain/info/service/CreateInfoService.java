@@ -27,6 +27,7 @@ public class CreateInfoService {
                 .firstTenure(request.getFirstTenure())
                 .lastTenure(request.getLastTenure())
                 .occupation(request.getOccupation())
+                .department(user.getDepartment())
                 .userName(user.getUserName())
                 .userNumber(user.getUserNumber())
                 .build();
