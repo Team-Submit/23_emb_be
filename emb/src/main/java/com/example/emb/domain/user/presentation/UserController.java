@@ -4,6 +4,7 @@ import com.example.emb.domain.user.presentation.dto.request.UserNameRequest;
 import com.example.emb.domain.user.presentation.dto.request.UserSignUpRequest;
 import com.example.emb.domain.user.presentation.dto.request.UpdatePasswordRequest;
 import com.example.emb.domain.user.presentation.dto.request.UserUpdateRequest;
+import com.example.emb.domain.user.presentation.dto.response.DepartmentResponse;
 import com.example.emb.domain.user.presentation.dto.response.UserCheckResponse;
 import com.example.emb.domain.user.presentation.dto.response.UserSignUpResponse;
 import com.example.emb.domain.user.service.UserLogoutService;
@@ -70,7 +71,7 @@ public class UserController {
     }
 
     @GetMapping("/token/departmentLists")
-    public List<String> getInfoLists() {
+    public DepartmentResponse getInfoLists() {
         return departmentService.execute();
     }
 
