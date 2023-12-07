@@ -10,4 +10,6 @@ public interface ManagerRepository extends CrudRepository<Manager, Long> {
 
     Optional<Manager> findById(String id);
 
+
+
 }

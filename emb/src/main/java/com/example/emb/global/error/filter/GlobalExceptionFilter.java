@@ -37,9 +37,11 @@ public class GlobalExceptionFilter extends OncePerRequestFilter {
         try {
             filterChain.doFilter(request, response);
         } catch (EmbException e) {
+            e.printStackTrace();
             sendErrorMessage(response, e.getErrorCode());
         } catch (Exception e) {
             logger.error(e);
+            e.printStackTrace();
             sendErrorMessage(response, GlobalErrorCode.INTERNAL_SERVER_ERROR);
         }
 
