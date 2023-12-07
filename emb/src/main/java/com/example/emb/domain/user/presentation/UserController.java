@@ -60,7 +60,7 @@ public class UserController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PostMapping("/managers")
+    @PatchMapping("/managers")
     public void userUpdate(@RequestBody @Valid UserUpdateRequest request) {
         userUpdateService.execute(request);
     }

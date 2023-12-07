@@ -1,7 +1,5 @@
 package com.example.emb.domain.user.presentation.dto.response;
 
-import lombok.Builder;
-import lombok.Getter;
 
 import java.util.List;
 
