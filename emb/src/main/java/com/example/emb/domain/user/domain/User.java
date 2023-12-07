@@ -3,6 +3,7 @@ package com.example.emb.domain.user.domain;
 import com.example.emb.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class User extends BaseTimeEntity {
     private  String userId;
 
     @NotNull(message = "필드는 비어 있을 수 없습니다.")
+    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@#$%^&+=!])(?=\\S+$).*$", message = "비밀번호는 영어, 숫자, 특수문자를 포함해야 합니다.")
     @Length(min = 8, max = 255, message = "userPassword필드는 {min} 글자 이상 {max} 글자 이하여야 합니다.")
     private String userPassword;
 
