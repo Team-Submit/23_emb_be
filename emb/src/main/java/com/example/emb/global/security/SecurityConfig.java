@@ -36,7 +36,6 @@ public class SecurityConfig {
 
                 .sessionManagement((sessionManagement) -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                // 추후 수정해야함
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/**").permitAll()
                         .anyRequest().permitAll())

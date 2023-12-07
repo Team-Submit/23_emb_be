@@ -35,7 +35,7 @@ public class InfoController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/details{term_id}")
+    @GetMapping("/details/{term_id}")
     public GetInfoDetailsResponse getDetails(@PathVariable("term_id") Long term_id) {
         return getInfoDetailsService.getDetails(term_id);
     }

@@ -18,7 +18,7 @@ public class AccountGetService {
     @Transactional
     public UserGetResponse execute(Long number) {
 
-        //managerFacade.getCurrentManager();
+        managerFacade.getCurrentManager();
         User user = userRepository.findByNumber(number);
 
         return UserGetResponse.builder()

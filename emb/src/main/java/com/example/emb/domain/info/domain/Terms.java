@@ -1,9 +1,7 @@
 package com.example.emb.domain.info.domain;
 
-import com.example.emb.domain.user.domain.User;
 import com.example.emb.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Getter

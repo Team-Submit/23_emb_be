@@ -1,19 +1,15 @@
 package com.example.emb.domain.manager.service;
 
-import com.example.emb.domain.auth.presentation.dto.response.UserTokenResponse;
 import com.example.emb.domain.manager.facade.ManagerFacade;
 import com.example.emb.domain.manager.presentation.dto.request.ManagerSignUpRequest;
 import com.example.emb.domain.user.domain.User;
 import com.example.emb.domain.user.domain.repository.UserRepository;
 import com.example.emb.domain.user.facade.UserFacade;
-import com.example.emb.global.property.jwt.JwtProperties;
-import com.example.emb.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.time.ZonedDateTime;
 
 @RequiredArgsConstructor
 @Service
