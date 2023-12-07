@@ -1,9 +1,7 @@
 package com.example.emb.domain.user.presentation.dto.request;
 
 import io.swagger.annotations.ApiModelProperty;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;

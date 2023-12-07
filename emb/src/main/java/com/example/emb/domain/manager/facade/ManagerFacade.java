@@ -33,8 +33,6 @@ public class ManagerFacade {
         if(managerRepository.findById(id).isPresent()) {
             throw AlreadyManagerExistException.EXCEPTION;
         }
-
-        //return managerRepository.existsById(id);
     }
 
 }

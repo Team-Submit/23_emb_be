@@ -1,11 +1,9 @@
 package com.example.emb.domain.manager.presentation;
 
-import com.example.emb.domain.manager.domain.Manager;
 import com.example.emb.domain.manager.presentation.dto.request.ManagerSignUpRequest;
 import com.example.emb.domain.manager.presentation.dto.response.UserGetResponse;
 import com.example.emb.domain.manager.service.*;
 import com.example.emb.domain.user.presentation.dto.request.UserUpdateRequest;
-import com.example.emb.domain.user.presentation.dto.response.MaResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,7 +23,6 @@ public class ManagerController {
     private final MService mService;
     private final AccountGetService accountGetService;
     private final UManagerUpdateService uManagerUpdateService;
-    private final MaService maService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/accounts")
@@ -39,12 +36,12 @@ public class ManagerController {
         mService.execute(request);
     }
 
-    @DeleteMapping("/accounts{user-id}")
+    @DeleteMapping("/accounts/{user-id}")
     public void accountDelete(@PathVariable("user-id") Long user_id) {
         accountDeleteService.execute(user_id);
     }
 
-    @PatchMapping("/accounts{user-id}")
+    @PatchMapping("/accounts/{user-id}")
     public void userUpdate(@PathVariable("user-id") Long number, @RequestBody @Valid UserUpdateRequest request) {
         uManagerUpdateService.execute(number, request);
     }
@@ -54,14 +51,9 @@ public class ManagerController {
         return accountGetService.execute(number);
     }
 
-    @GetMapping("/m")
-    public MaResponse ma() {
-        return maService.execute();
-    }
-
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/lists")
     public List<Map<String, String>> getUserList() {
-        return getUserListService.getUserList();
+        return getUserListService.execute();
     }
 }

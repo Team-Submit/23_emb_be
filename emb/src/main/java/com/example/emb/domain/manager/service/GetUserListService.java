@@ -1,4 +1,5 @@
 package com.example.emb.domain.manager.service;
+import com.example.emb.domain.manager.facade.ManagerFacade;
 import com.example.emb.domain.user.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,8 +13,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class GetUserListService {
     private final UserRepository userRepository;
+    private final ManagerFacade managerFacade;
 
-    public List<Map<String, String>> getUserList() {
+    public List<Map<String, String>> execute() {
+
+        managerFacade.getCurrentManager();
+
         return userRepository.findAll().stream()
                 .map(user -> {
                     Map<String, String> userMap = new HashMap<>();
