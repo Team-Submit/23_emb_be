@@ -13,23 +13,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserFacade {
     private final UserRepository userRepository;
-
     public User getCurrentUser() {
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
         return getUserByUserId(userId);
     }
-
     public User getUserByUserId(String userId) {
         return userRepository.findByUserId(userId)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }
-
     public void checkUserIdExists(String userId) {
         if (userRepository.findByUserId(userId).isPresent()) {
             throw AlreadyUserIdExistsException.EXCEPTION;
         }
     }
-
     public void checkUserNameExists(String userName) {
         if (userRepository.findByUserName(userName).isPresent()) {
             throw AlreadyUserExistException.EXCEPTION;
