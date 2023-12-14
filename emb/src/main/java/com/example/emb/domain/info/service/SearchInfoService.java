@@ -19,22 +19,17 @@ public class SearchInfoService {
 
         List<Terms> terms;
 
-        if (birthdate == null) {
+        if (birthdate != null && birthdate.equals("''")) {
             terms = termsRepository.findByName(name);
-            return terms.stream()
-                    .map(term -> mapTerms(term))
-                    .collect(Collectors.toList());
         } else if (name != null && birthdate != null) {
             terms = termsRepository.findByNameAndBirthdate(name, birthdate);
-            return terms.stream()
-                    .map(term -> mapTerms(term))
-                    .collect(Collectors.toList());
         } else {
             terms = termsRepository.findAll();
-            return terms.stream()
-                    .map(term -> mapTerms(term))
-                    .collect(Collectors.toList());
         }
+
+        return terms.stream()
+                .map(SearchInfoService::mapTerms)
+                .collect(Collectors.toList());
     }
 
     public static SearchResponse mapTerms(Terms terms) {
