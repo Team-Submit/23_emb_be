@@ -30,7 +30,7 @@ public class InfoController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/search")
-    public List<SearchResponse> searchFeed(@RequestParam String name, @RequestParam(required = false) String birthdate) {
+    public List<SearchResponse> searchFeed(@RequestParam String name, @RequestParam String birthdate) {
         return searchInfoService.execute(name, birthdate);
     }
 

@@ -22,6 +22,7 @@ public class GetUserListService {
         return userRepository.findAll().stream()
                 .map(user -> {
                     Map<String, String> userMap = new HashMap<>();
+                    userMap.put("id", user.getUserId());
                     userMap.put("department", user.getDepartment());
                     userMap.put("userName", user.getUserName());
                     userMap.put("userNumber", user.getUserNumber());
