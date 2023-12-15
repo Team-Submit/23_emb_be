@@ -27,4 +27,8 @@ public class CreateInfoRequest {
 
     @NotBlank(message = "occupation는 Null, 공백을 허용하지 않습니다.")
     private String occupation;
+
+    private String issuingDepartment;
+    private String currentUserName;
+    private String currentUserNumber;
 }

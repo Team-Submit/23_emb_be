@@ -13,11 +13,8 @@ import org.springframework.stereotype.Service;
 public class GetInfoDetailsService {
 
     private final TermsRepository termsRepository;
-    private final UserFacade userFacade;
 
     public GetInfoDetailsResponse getDetails(Long term_id) {
-
-        User user = userFacade.getCurrentUser();
 
         Terms terms = termsRepository.findByTermId(term_id);
 
@@ -31,9 +28,9 @@ public class GetInfoDetailsService {
                 terms.getDepartment(),
                 terms.getUserName(),
                 terms.getUserNumber(),
-                user.getDepartment(),
-                user.getUserName(),
-                user.getUserNumber()
+                terms.getIssuingDepartment(),
+                terms.getCurrentUserName(),
+                terms.getCurrentUserNumber()
         );
     }
 }

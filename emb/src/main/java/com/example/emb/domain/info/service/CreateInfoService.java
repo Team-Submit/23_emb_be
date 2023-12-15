@@ -30,6 +30,9 @@ public class CreateInfoService {
                 .department(user.getDepartment())
                 .userName(user.getUserName())
                 .userNumber(user.getUserNumber())
+                .issuingDepartment(user.getDepartment())
+                .currentUserName(user.getUserName())
+                .currentUserNumber(user.getUserNumber())
                 .build();
         termsRepository.save(terms);
     }
