@@ -21,12 +21,13 @@ public class UserUpdateService {
 
         User user = userFacade.getCurrentUser();
 
-        Terms.builder()
+        Terms terms = Terms.builder()
                 .issuingDepartment(request.getDepartment())
                 .currentUserName(request.getUserName())
                 .currentUserNumber(request.getUserNumber())
                 .build();
 
         user.Userupdate(request.getUserName(), request.getUserNumber(), request.getDepartment());
+        termsRepository.save(terms);
     }
 }
