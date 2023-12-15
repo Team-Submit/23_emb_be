@@ -9,6 +9,8 @@ public interface TermsRepository extends JpaRepository<Terms, Long> {
 
     Terms findByTermId(Long id);
 
+    List<Terms> findByNumber(Long number);
+
     List<Terms> findByName(String name);
 
     List<Terms> findByNameAndBirthdate(String name, String birthdate);

@@ -21,6 +21,7 @@ public class CreateInfoService {
         User user = userFacade.getCurrentUser();
 
         Terms terms = Terms.builder()
+                .number(user.getNumber())
                 .name(request.getName())
                 .birthdate(request.getBirthdate())
                 .address(request.getAddress())

@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+
 @RequiredArgsConstructor
 @Service
 public class UserUpdateService {
@@ -20,14 +23,12 @@ public class UserUpdateService {
     public void execute(UserUpdateRequest request) {
 
         User user = userFacade.getCurrentUser();
+        List<Terms> termsList = termsRepository.findByNumber(user.getNumber());
 
-        Terms terms = Terms.builder()
-                .issuingDepartment(request.getDepartment())
-                .currentUserName(request.getUserName())
-                .currentUserNumber(request.getUserNumber())
-                .build();
 
         user.Userupdate(request.getUserName(), request.getUserNumber(), request.getDepartment());
-        termsRepository.save(terms);
+        for (Terms terms : termsList) {
+            terms.termsUpdate(request.getUserName(), request.getUserNumber(), request.getDepartment());
+        }
     }
 }
