@@ -17,6 +17,8 @@ public class SearchInfoService {
 
     public List<SearchResponse> execute(String name, String birthdate) {
 
+
+
         List<Terms> terms;
 
         if (birthdate != null && birthdate.equals("''")) {

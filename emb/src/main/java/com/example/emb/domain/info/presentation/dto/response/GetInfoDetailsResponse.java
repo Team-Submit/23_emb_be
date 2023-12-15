@@ -18,4 +18,8 @@ public class GetInfoDetailsResponse {
     private String userName;
     private String userNumber;
 
+    private String currentDepartment;
+    private String currentUserName;
+    private String currentUserNumber;
+
 }
