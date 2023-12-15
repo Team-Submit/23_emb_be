@@ -33,8 +33,11 @@ public class Terms extends BaseTimeEntity {
 
     private  String userNumber;
 
+    private String issuingDepartment;
+    private String currentUserName;
+    private String currentUserNumber;
+
     public Long getTermId() {
         return termId;
     }
-
 }
