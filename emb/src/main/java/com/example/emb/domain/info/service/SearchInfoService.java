@@ -43,9 +43,9 @@ public class SearchInfoService {
                 terms.getFirstTenure(),
                 terms.getLastTenure(),
                 terms.getOccupation(),
-                terms.getDepartment(),
-                terms.getUserName(),
-                terms.getUserNumber()
+                terms.getIssuingDepartment(),
+                terms.getCurrentUserName(),
+                terms.getCurrentUserNumber()
         );
     }
 
